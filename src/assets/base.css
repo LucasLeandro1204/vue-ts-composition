@@ -58,7 +58,6 @@ body {
   border-width: 0;
   border-style: solid;
   border-color: var(--border-color);
-  /* currentColor */
 }
 
 hr {
@@ -77,7 +76,6 @@ input::placeholder,
 textarea::placeholder {
   opacity: 1;
   color: var(--color-gray-400);
-  /* #a1a1aa */
 }
 
 button,

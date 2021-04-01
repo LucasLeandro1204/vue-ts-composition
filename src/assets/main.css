@@ -1,8 +1,5 @@
+@import './variables.css';
 @import './base.css';
-
-/**
- * Custom rules.
- */
 
 body {
   margin: 0;
@@ -10,4 +7,5 @@ body {
 
 #app {
   display: flex;
+  height: 100vh;
 }
