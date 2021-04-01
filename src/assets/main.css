@@ -1,4 +1,13 @@
 @import './base.css';
+
+/**
+ * Custom rules.
+ */
+
 body {
   margin: 0;
+}
+
+#app {
+  display: flex;
 }

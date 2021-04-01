@@ -6,7 +6,5 @@
 </template>
 
 <style lang="postcss">
-#app {
-  display: flex;
-}
+
 </style>
