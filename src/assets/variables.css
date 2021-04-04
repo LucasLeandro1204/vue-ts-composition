@@ -2,7 +2,8 @@
   --color-black: #000000;
   --color-white: #ffffff;
 
-  --color-gray-400: #a1a1aa;
+  --color-gray: #a1a1aa;
+  --color-gray-darker: #22282e;
 
   --border-color: currentColor;
 }

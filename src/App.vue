@@ -26,7 +26,6 @@ export default defineComponent({
 
 <style lang="postcss">
 .app {
-
   &__player {
     width: 100%;
     height: 100%;

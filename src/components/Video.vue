@@ -68,5 +68,6 @@ export default defineComponent({
 .video {
   width: 100%;
   height: 100%;
+  background: var(--color-gray-darker);
 }
 </style>
