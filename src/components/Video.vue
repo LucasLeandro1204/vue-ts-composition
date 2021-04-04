@@ -1,7 +1,21 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import videojs, { VideoJsPlayer } from 'video.js';
+import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
 import { ref, watch } from '@vue/runtime-core';
+
+export const PLAYER_OPTIONS = <VideoJsPlayerOptions>{
+  fluid: true,
+  preload: 'auto',
+  controls: true,
+  bigPlayButton: false,
+
+  controlBar: {
+    playToggle: false,
+    fullscreenToggle: false,
+    remainingTimeDisplay: false,
+    pictureInPictureToggle: false,
+  },
+};
 
 export default defineComponent({
   props: {
@@ -11,19 +25,16 @@ export default defineComponent({
   },
 
   setup (): object {
-    const player = ref<VideoJsPlayer | null>(null);
     const target = ref<HTMLCanvasElement | null>(null);
 
     watch(
       target,
       (element, _, onCleanup): void => {
-        player.value = videojs(element);
+        const player: VideoJsPlayer = videojs(element, PLAYER_OPTIONS);
 
         onCleanup((): void => {
-          const { value: instance } = player;
-
-          instance!.pause();
-          instance!.dispose();
+          player.pause();
+          player.dispose();
         });
       },
       {
@@ -43,10 +54,7 @@ export default defineComponent({
     class="video video-js"
   >
     <video
-      fluid
-      controls
       ref="target"
-      preload="auto"
     >
       <source
         :src="src"
@@ -60,13 +68,5 @@ export default defineComponent({
 .video {
   width: 100%;
   height: 100%;
-
-  .vjs-time-control,
-  .vjs-play-control,
-  .vjs-big-play-button,
-  .vjs-fullscreen-control,
-  .vjs-picture-in-picture-control {
-    display: none;
-  }
 }
 </style>
