@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import videojs from 'video.js';
-import { ref, watch } from '@vue/runtime-core';
+import { nextTick, ref, watch } from '@vue/runtime-core';
 import 'video.js/dist/video-js.min.css';
 
 export default defineComponent({
@@ -10,19 +10,23 @@ export default defineComponent({
 
     watch(
       video,
-      (element, _, onCleanup): void => {
+      (element): void => {
         const instance = videojs(element);
 
         console.dir(instance)
 
-        onCleanup((): void => {
+        // onCleanup((): void => {
 
-        });
+        // });
       },
       {
         flush: 'post',
       },
     );
+
+    return {
+      video,
+    };
   },
 });
 </script>
