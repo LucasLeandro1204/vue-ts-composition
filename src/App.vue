@@ -11,29 +11,25 @@ export default defineComponent({
 
 <template>
   <div
-    class="app"
+    class="app__player"
   >
-    <div
-      class="app__player"
-    >
-      <Video
-        class="app__video"
-        src="/big_buck_bunny.mp4"
-      />
+    <Video
+      class="app__video"
+      src="/big_buck_bunny.mp4"
+    />
 
-      <button>
+    <button>
 
-      </button>
-    </div>
+    </button>
   </div>
 </template>
 
 <style lang="postcss">
 .app {
-  display: flex;
 
-  &__video {
-
+  &__player {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

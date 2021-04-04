@@ -33,14 +33,13 @@ export default defineComponent({
 
 <template>
   <div
-    class="video"
+    class="video video-js"
   >
     <video
-      class="video-js"
+      class="vjs-fluid"
       ref="target"
       controls
       preload="auto"
-      fluid
     >
       <source
         :src="src"
@@ -52,6 +51,9 @@ export default defineComponent({
 
 <style lang="postcss">
 .video {
+  width: 100%;
+  height: 100%;
+
   .vjs-time-control,
   .vjs-play-control,
   .vjs-big-play-button,
