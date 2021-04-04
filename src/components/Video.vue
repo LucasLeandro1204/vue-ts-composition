@@ -36,9 +36,9 @@ export default defineComponent({
     class="video video-js"
   >
     <video
-      class="vjs-fluid"
-      ref="target"
+      fluid
       controls
+      ref="target"
       preload="auto"
     >
       <source
