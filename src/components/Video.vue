@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import videojs, { VideoJsPlayer } from 'video.js';
-import { nextTick, ref, watch } from '@vue/runtime-core';
+import { ref, watch } from '@vue/runtime-core';
 import 'video.js/dist/video-js.min.css';
 
 export default defineComponent({
@@ -28,21 +28,21 @@ export default defineComponent({
 
 <template>
   <div
-    class="player"
+    class="video"
   >
     <video
       src="../assets/big_buck_bunny.mp4"
       ref="target"
-      class="player__video"
+      class="video__target"
     />
   </div>
 </template>
 
 <style lang="postcss">
-.player {
+.video {
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: var(--color-black);
+  /* background-color: var(--color-black); */
 }
 </style>

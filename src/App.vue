@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Video from './components/Player.vue';
+import Video from './components/Video.vue';
 
 export default defineComponent({
   components: {
@@ -10,7 +10,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <Video />
+  <div
+    class="app"
+  >
+    <Video
+      class="app__video"
+    />
+  </div>
 </template>
 
 <style lang="postcss">
