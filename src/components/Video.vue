@@ -47,6 +47,11 @@ export default defineComponent({
 
 <style lang="postcss">
 .video {
-  /* background-color: var(--color-black); */
+  .vjs-time-control,
+  .vjs-play-control,
+  .vjs-fullscreen-control,
+  .vjs-picture-in-picture-control {
+    display: none;
+  }
 }
 </style>
