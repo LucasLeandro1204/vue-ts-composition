@@ -2,7 +2,7 @@
 import PlayIcon from './icon/Play.vue';
 import PauseIcon from './icon/Pause.vue';
 import Video from './Video.vue';
-import { computed, defineComponent, ref, Component } from 'vue'
+import { computed, defineComponent, ref, Component } from 'vue';
 
 export interface PlayerAction {
   text: string,

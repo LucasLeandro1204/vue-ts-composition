@@ -1,7 +1,6 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
-import { ref, watch } from '@vue/runtime-core';
+import { defineComponent, ref, watch } from 'vue';
 
 export const PLAYER_OPTIONS = <VideoJsPlayerOptions>{
   controls: true,
