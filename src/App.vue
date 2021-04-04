@@ -18,7 +18,7 @@ export default defineComponent({
     >
       <Video
         class="app__video"
-        src="../assets/big_buck_bunny.mp4"
+        src="/big_buck_bunny.mp4"
       />
 
       <button>
