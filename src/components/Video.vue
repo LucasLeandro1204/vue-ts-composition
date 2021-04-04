@@ -11,13 +11,20 @@ export default defineComponent({
   },
 
   setup (): object {
-    const video = ref<VideoJsPlayer | null>(null);
+    const player = ref<VideoJsPlayer | null>(null);
     const target = ref<HTMLCanvasElement | null>(null);
 
     watch(
       target,
-      (element): void => {
-        video.value = videojs(element);
+      (element, _, onCleanup): void => {
+        player.value = videojs(element);
+
+        onCleanup((): void => {
+          const { value: instance } = player;
+
+          instance!.pause();
+          instance!.dispose();
+        });
       },
       {
         flush: 'post',
