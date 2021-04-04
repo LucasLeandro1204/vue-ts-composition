@@ -14,12 +14,12 @@ export default defineComponent({
     class="app__player"
   >
     <Video
-      class="app__video"
+      class="app__player-video"
       src="/big_buck_bunny.mp4"
     />
 
     <button>
-
+      Play
     </button>
   </div>
 </template>
@@ -27,8 +27,14 @@ export default defineComponent({
 <style lang="postcss">
 .app {
   &__player {
-    width: 100%;
-    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &-video {
+      width: 100%;
+      height: max-content;
+    }
   }
 }
 </style>
