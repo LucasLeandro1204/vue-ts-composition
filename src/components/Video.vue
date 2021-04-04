@@ -54,6 +54,7 @@ export default defineComponent({
 .video {
   .vjs-time-control,
   .vjs-play-control,
+  .vjs-big-play-button,
   .vjs-fullscreen-control,
   .vjs-picture-in-picture-control {
     display: none;
