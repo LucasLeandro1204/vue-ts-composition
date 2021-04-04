@@ -4,7 +4,6 @@ import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
 import { ref, watch } from '@vue/runtime-core';
 
 export const PLAYER_OPTIONS = <VideoJsPlayerOptions>{
-  fluid: true,
   controls: true,
   preload: 'auto',
   bigPlayButton: false,
@@ -55,8 +54,7 @@ export default defineComponent({
   >
     <video
       ref="target"
-      width="100%"
-      height="100%"
+      class="video__player"
     >
       <source
         :src="src"
@@ -68,6 +66,8 @@ export default defineComponent({
 
 <style lang="postcss">
 .video {
-  background: var(--color-gray-darker);
+  width: auto;
+  height: auto;
+  background: var(--color-gray-darkest);
 }
 </style>

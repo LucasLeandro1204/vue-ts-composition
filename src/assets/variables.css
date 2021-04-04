@@ -3,7 +3,8 @@
   --color-white: #ffffff;
 
   --color-gray: #a1a1aa;
-  --color-gray-darker: #22282e;
+  --color-gray-darker: #313b46;
+  --color-gray-darkest: #22282e;
 
   --border-color: currentColor;
 }

@@ -1,16 +1,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Chat from './components/Chat.vue';
 import Video from './components/Video.vue';
 
 export default defineComponent({
   components: {
+    Chat,
     Video,
   },
 });
 </script>
 
 <template>
-  <div
+  <main
     class="app__player"
   >
     <Video
@@ -21,20 +23,23 @@ export default defineComponent({
     <button>
       Play
     </button>
-  </div>
+  </main>
+
+  <Chat
+    class="app__chat"
+  />
 </template>
 
 <style lang="postcss">
 .app {
   &__player {
-    flex: 1;
     display: flex;
     flex-direction: column;
+  }
 
-    &-video {
-      width: 100%;
-      height: max-content;
-    }
+  &__chat {
+    width: 380px;
+    margin-left: 32px;
   }
 }
 </style>

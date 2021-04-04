@@ -10,5 +10,7 @@ body {
 #app {
   height: 100vh;
   display: flex;
-  background: var(--color-gray-darker);
+  padding: 32px;
+  justify-content: center;
+  background: var(--color-gray-darkest);
 }
