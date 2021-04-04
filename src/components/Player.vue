@@ -1,12 +1,44 @@
 <script lang="ts">
 import PlayIcon from './icon/Play.vue';
+import PauseIcon from './icon/Pause.vue';
 import Video from './Video.vue';
-import { defineComponent } from 'vue'
+import { computed, defineComponent, ref, Component } from 'vue'
+
+export interface PlayerAction {
+  text: string,
+  icon: Component,
+};
 
 export default defineComponent({
   components: {
     Video,
-    PlayIcon,
+  },
+
+  setup (): object {
+    const playing = ref<boolean>(false);
+    const action = computed((): PlayerAction => {
+      if (playing.value) {
+        return {
+          text: 'PAUSE',
+          icon: PauseIcon,
+        };
+      }
+
+      return {
+        text: 'PLAY',
+        icon: PlayIcon,
+      };
+    });
+
+    const handleActionClick = (): void => {
+      playing.value = ! playing.value;
+    };
+
+    return {
+      action,
+      playing,
+      handleActionClick,
+    };
   },
 })
 </script>
@@ -22,12 +54,14 @@ export default defineComponent({
 
     <button
       class="player__action"
+      @click.prevent="handleActionClick"
     >
-      <PlayIcon
+      <Component
+        :is="action.icon"
         class="player__action-icon"
       />
 
-      PLAY
+      {{ action.text }}
     </button>
   </main>
 </template>
