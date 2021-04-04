@@ -32,6 +32,7 @@ export default defineComponent({
     <video
       src="../assets/big_buck_bunny.mp4"
       class="video-js"
+      ref="target"
       controls
       preload="auto"
       fluid
