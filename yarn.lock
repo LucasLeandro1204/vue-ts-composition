@@ -28,10 +28,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@types/videojs@^5.16.2":
-  version "5.16.2"
-  resolved "https://registry.yarnpkg.com/@types/videojs/-/videojs-5.16.2.tgz#36c0f4f7005a492aa9980bee2e0c6591baa146f3"
-  integrity sha1-NsD09wBaSSqpmAvuLgxlkbqhRvM=
+"@types/video.js@^7.3.15":
+  version "7.3.15"
+  resolved "https://registry.yarnpkg.com/@types/video.js/-/video.js-7.3.15.tgz#42ff1bf598384ae5966bf6f64560197357e99033"
+  integrity sha512-BrwSex/PFQENARdxWJVlYUwqu0HbUhM7Zrk8DnrWhUO4Q1BoNK93KNu4OlZOTOlVVS99nX5BiOhB8AGpI6jcQA==
 
 "@videojs/http-streaming@2.4.2":
   version "2.4.2"
