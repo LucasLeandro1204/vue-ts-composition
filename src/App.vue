@@ -24,8 +24,6 @@ export default defineComponent({
 
       </button>
     </div>
-
-    kaoepfk
   </div>
 </template>
 

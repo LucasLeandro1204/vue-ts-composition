@@ -2,7 +2,6 @@
 import { defineComponent } from 'vue';
 import videojs, { VideoJsPlayer } from 'video.js';
 import { ref, watch } from '@vue/runtime-core';
-import 'video.js/dist/video-js.min.css';
 
 export default defineComponent({
   setup (): object {
@@ -32,9 +31,16 @@ export default defineComponent({
   >
     <video
       src="../assets/big_buck_bunny.mp4"
-      ref="target"
-      class="video__target"
-    />
+      class="video-js"
+      controls
+      preload="auto"
+      fluid
+    >
+      <source
+        src="../assets/big_buck_bunny.mp4"
+        type="video/mp4"
+      />
+    </video>
   </div>
 </template>
 
