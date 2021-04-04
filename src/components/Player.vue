@@ -1,23 +1,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import videojs from 'video.js';
+import videojs, { VideoJsPlayer } from 'video.js';
 import { nextTick, ref, watch } from '@vue/runtime-core';
 import 'video.js/dist/video-js.min.css';
 
 export default defineComponent({
   setup () {
-    const video = ref<HTMLCanvasElement | null>();
+    const video = ref<VideoJsPlayer | null>(null);
+    const target = ref<HTMLCanvasElement | null>(null);
 
     watch(
-      video,
+      target,
       (element): void => {
-        const instance = videojs(element);
-
-        console.dir(instance)
-
-        // onCleanup((): void => {
-
-        // });
+        video.value = videojs(element);
       },
       {
         flush: 'post',
@@ -25,7 +20,7 @@ export default defineComponent({
     );
 
     return {
-      video,
+      target,
     };
   },
 });
@@ -37,7 +32,7 @@ export default defineComponent({
   >
     <video
       src="../assets/big_buck_bunny.mp4"
-      ref="video"
+      ref="target"
       class="player__video"
     />
   </div>
