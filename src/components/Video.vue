@@ -4,6 +4,12 @@ import videojs, { VideoJsPlayer } from 'video.js';
 import { ref, watch } from '@vue/runtime-core';
 
 export default defineComponent({
+  props: {
+    src: {
+      type: String,
+    },
+  },
+
   setup (): object {
     const video = ref<VideoJsPlayer | null>(null);
     const target = ref<HTMLCanvasElement | null>(null);
@@ -30,7 +36,6 @@ export default defineComponent({
     class="video"
   >
     <video
-      src="../assets/big_buck_bunny.mp4"
       class="video-js"
       ref="target"
       controls
@@ -38,7 +43,7 @@ export default defineComponent({
       fluid
     >
       <source
-        src="../assets/big_buck_bunny.mp4"
+        :src="src"
         type="video/mp4"
       />
     </video>
