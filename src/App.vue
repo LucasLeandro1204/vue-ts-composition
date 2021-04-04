@@ -1,13 +1,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Chat from './components/Chat.vue';
-import Video from './components/Video.vue';
 import Player from './components/Player.vue';
 
 export default defineComponent({
   components: {
     Chat,
-    Video,
     Player,
   },
 });
