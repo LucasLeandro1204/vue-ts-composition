@@ -13,12 +13,28 @@ export default defineComponent({
   <div
     class="app"
   >
-    <Video
-      class="app__video"
-    />
+    <div
+      class="app__player"
+    >
+      <Video
+        class="app__video"
+      />
+
+      <button>
+
+      </button>
+    </div>
+
+    kaoepfk
   </div>
 </template>
 
 <style lang="postcss">
+.app {
+  display: flex;
 
+  &__video {
+
+  }
+}
 </style>

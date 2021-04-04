@@ -5,7 +5,7 @@ import { ref, watch } from '@vue/runtime-core';
 import 'video.js/dist/video-js.min.css';
 
 export default defineComponent({
-  setup () {
+  setup (): object {
     const video = ref<VideoJsPlayer | null>(null);
     const target = ref<HTMLCanvasElement | null>(null);
 
@@ -40,9 +40,6 @@ export default defineComponent({
 
 <style lang="postcss">
 .video {
-  width: 100%;
-  height: 100%;
-  display: flex;
   /* background-color: var(--color-black); */
 }
 </style>
