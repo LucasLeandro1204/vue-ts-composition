@@ -1,14 +1,6 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import Chat from './components/Chat.vue';
 import Player from './components/Player.vue';
-
-export default defineComponent({
-  components: {
-    Chat,
-    Player,
-  },
-});
 </script>
 
 <template>

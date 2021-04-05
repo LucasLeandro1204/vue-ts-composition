@@ -2,22 +2,17 @@
 import PlayIcon from './icon/Play.vue';
 import PauseIcon from './icon/Pause.vue';
 import Video from './Video.vue';
-import ButtonIcon, { ButtonInterface } from './Button.vue';
+import ButtonIcon from './Button.vue';
+import { ButtonInterface } from './Button.vue';
 import { computed, defineComponent, ref } from 'vue';
 
 export default defineComponent({
-  props: {
-    status: {
-      type: Boolean,
-    },
-  },
-
   components: {
     Video,
     ButtonIcon,
   },
 
-  setup (): object {
+  setup () {
     const playing = ref<boolean>(false);
     const action = computed((): ButtonInterface => {
       if (playing.value) {
@@ -39,11 +34,10 @@ export default defineComponent({
 
     return {
       action,
-      playing,
       handleActionClick,
     };
   },
-})
+});
 </script>
 
 <template>

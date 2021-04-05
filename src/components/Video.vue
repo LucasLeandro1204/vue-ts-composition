@@ -22,7 +22,7 @@ export default defineComponent({
     },
   },
 
-  setup (): object {
+  setup () {
     const target = ref<HTMLCanvasElement | null>(null);
 
     watch(

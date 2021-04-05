@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, Component, PropType } from 'vue';
+import { PropType, Component, defineComponent } from 'vue';
 
 export interface ButtonInterface {
   text: string,
@@ -7,29 +7,30 @@ export interface ButtonInterface {
 };
 
 export default defineComponent({
-  inheritAttrs: false,
+  props: {
+    action: {
+      type: Object as PropType<ButtonInterface>,
+      required: true,
+    },
+  },
 
   emits: {
     click: (): boolean => true,
   },
 
-  props: {
-    action: {
-      type: Object as PropType<ButtonIcon>,
-    },
-  },
-
-  setup (props, { emit }): object {
+  setup (_, { emit }) {
     const handleClick = (): void => emit('click');
 
     return {
       handleClick,
-    };
+    }
   },
-})
+});
 </script>
 
-<template>
+<template
+  inherit-attrs="false"
+>
   <button
     class="player__action"
     @click.prevent="handleClick"
