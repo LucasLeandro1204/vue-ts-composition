@@ -1,21 +1,37 @@
 <script lang="ts">
 import PlayIcon from './icon/Play.vue';
 import PauseIcon from './icon/Pause.vue';
-import Video from './Video.vue';
+import Video, { PLAYER_OPTIONS } from './Video.vue';
 import ButtonIcon from './Button.vue';
 import { ButtonInterface } from './Button.vue';
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, watch, ref, VNodeRef } from 'vue';
+import videojs, { VideoJsPlayer } from 'video.js';
 
 export default defineComponent({
+  props: {
+    /**
+     * Player status.
+     * true = playing
+     * false = paused
+     */
+    status: {
+      type: Boolean,
+    },
+  },
+
+  emits: {
+    status: (payload: boolean): boolean => typeof payload === 'boolean',
+  },
+
   components: {
     Video,
     ButtonIcon,
   },
 
-  setup () {
-    const playing = ref<boolean>(false);
+  setup (props, { emit }) {
+    const video = ref<VNodeRef | null>(null);
     const action = computed((): ButtonInterface => {
-      if (playing.value) {
+      if (props.status) {
         return {
           text: 'PAUSE',
           icon: PauseIcon,
@@ -28,11 +44,29 @@ export default defineComponent({
       };
     });
 
-    const handleActionClick = (): void => {
-      playing.value = ! playing.value;
-    };
+    const handleActionClick = (): void => emit('status', ! props.status);
+
+    watch(
+      video,
+      ({ target }, _, onCleanup): void => {
+        const player: VideoJsPlayer = videojs(target, PLAYER_OPTIONS);
+
+        player.on('timeupdate', (): void => {
+          console.log(player.currentTime());
+        });
+
+        onCleanup((): void => {
+          player.pause();
+          player.dispose();
+        });
+      },
+      {
+        flush: 'post',
+      },
+    );
 
     return {
+      video,
       action,
       handleActionClick,
     };
@@ -47,6 +81,7 @@ export default defineComponent({
     <Video
       class="player__video"
       src="/big_buck_bunny.mp4"
+      ref="video"
     />
 
     <ButtonIcon

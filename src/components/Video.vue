@@ -1,6 +1,6 @@
 <script lang="ts">
-import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
-import { defineComponent, ref, watch } from 'vue';
+import { VideoJsPlayerOptions } from 'video.js';
+import { Component, defineComponent, ref } from 'vue';
 
 export const PLAYER_OPTIONS = <VideoJsPlayerOptions>{
   controls: true,
@@ -29,21 +29,6 @@ export default defineComponent({
 
   setup () {
     const target = ref<HTMLCanvasElement | null>(null);
-
-    watch(
-      target,
-      (element, _, onCleanup): void => {
-        const player: VideoJsPlayer = videojs(element, PLAYER_OPTIONS);
-
-        onCleanup((): void => {
-          player.pause();
-          player.dispose();
-        });
-      },
-      {
-        flush: 'post',
-      },
-    );
 
     return {
       target,
