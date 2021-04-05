@@ -1,8 +1,8 @@
 <script lang="ts">
 import { ComputedRef, ref } from '@vue/reactivity';
 import { computed, defineComponent } from 'vue-demi';
-import Chat from './components/Chat/Chat.vue';
-import { ChatMessageArray } from './components/Chat/types';
+import Chat from './components/chat/Chat.vue';
+import { ChatMessageArray } from './components/chat/types';
 import Player from './components/Player.vue';
 import fakeMessages from './messages';
 
