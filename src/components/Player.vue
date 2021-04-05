@@ -102,7 +102,10 @@ export default defineComponent({
         class="player__action"
       />
 
-      {{ formatedTime }}
+      <span
+        class="player__time"
+        v-text="formatedTime"
+      />
     </div>
   </main>
 </template>
@@ -120,28 +123,12 @@ export default defineComponent({
   &__inline-controls {
     display: flex;
     align-items: center;
-    color: var(--color-white);
   }
 
-  &__action {
-    display: flex;
-    width: 116px;
-    border-radius: 4px;
-    letter-spacing: .8px;
-    align-items: center;
+  &__time {
+    opacity: .7;
+    margin-left: 8px;
     color: var(--color-white);
-    padding: 12px 0 12px 16px;
-    border: 1px solid var(--color-gray);
-
-    &-icon {
-      width: 20px;
-      height: 20px;
-      margin-right: 12px;
-    }
-
-    &:hover {
-      background-color: var(--color-gray-darker);
-    }
   }
 }
 </style>
