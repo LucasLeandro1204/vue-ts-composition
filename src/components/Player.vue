@@ -6,7 +6,7 @@ import ButtonIcon from './Button.vue';
 import { ButtonInterface } from './Button.vue';
 import { computed, defineComponent, watch, ref, VNode } from 'vue';
 import { useVideojs } from '../use/videojs';
-import { debouncedWatch, useVModel } from '@vueuse/core';
+import { debouncedWatch } from '@vueuse/core';
 
 export default defineComponent({
   props: {
