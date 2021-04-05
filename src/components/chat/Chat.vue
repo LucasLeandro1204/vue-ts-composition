@@ -2,8 +2,6 @@
 import { computed, ComputedRef, defineComponent, PropType } from 'vue';
 import ChatMessage, { ChatMessageInterface } from './ChatMessage.vue';
 
-export type ChatMessageArray = Array<ChatMessageInterface>;
-
 export default defineComponent({
   components: {
     ChatMessage,
@@ -11,7 +9,7 @@ export default defineComponent({
 
   props: {
     messages: {
-      type: Array as PropType<ChatMessageArray>,
+      type: Array as PropType<ChatMessageInterface[]>,
       required: false,
       default: () => ([]),
     },
@@ -24,8 +22,8 @@ export default defineComponent({
   },
 
   setup (props) {
-    const filtered: ComputedRef<ChatMessageArray> = computed(
-      (): ChatMessageArray => props.messages.filter(message => props.currentTime > message.time)
+    const filtered: ComputedRef<ChatMessageInterface[]> = computed(
+      (): ChatMessageInterface[] => props.messages.filter(message => props.currentTime > message.time)
     );
 
     return {

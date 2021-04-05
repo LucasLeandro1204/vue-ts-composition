@@ -1,7 +1,8 @@
 <script lang="ts">
 import { ComputedRef, ref } from '@vue/reactivity';
 import { computed, defineComponent } from 'vue-demi';
-import Chat, { ChatMessageArray } from './components/Chat/Chat.vue';
+import Chat from './components/Chat/Chat.vue';
+import { ChatMessageInterface } from './components/Chat/ChatMessage.vue';
 import Player from './components/Player.vue';
 import fakeMessages from './messages';
 
@@ -14,7 +15,7 @@ export default defineComponent({
   setup () {
     const currentTime = ref<number>(0);
     const playing = ref<boolean>(false);
-    const messages: ComputedRef<ChatMessageArray> = computed((): ChatMessageArray => fakeMessages);
+    const messages: ComputedRef<ChatMessageInterface[]> = computed((): Array<ChatMessageInterface> => fakeMessages);
 
     return {
       playing,
