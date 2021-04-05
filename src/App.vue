@@ -1,9 +1,26 @@
-<script setup lang="ts">
-import { ref } from '@vue/reactivity';
-import Chat from './components/Chat.vue';
+<script lang="ts">
+import { ComputedRef, ref } from '@vue/reactivity';
+import { computed, defineComponent } from 'vue-demi';
+import Chat, { ChatMessageArray } from './components/Chat/Chat.vue';
 import Player from './components/Player.vue';
+import fakeMessages from './messages';
 
-const playing = ref<boolean>(false);
+export default defineComponent({
+  components: {
+    Chat,
+    Player,
+  },
+
+  setup () {
+    const playing = ref<boolean>(false);
+    const messages: ComputedRef<ChatMessageArray> = computed((): ChatMessageArray => fakeMessages);
+
+    return {
+      playing,
+      messages,
+    };
+  },
+});
 </script>
 
 <template>
@@ -14,6 +31,7 @@ const playing = ref<boolean>(false);
 
   <Chat
     class="app__chat"
+    :messages="messages"
   />
 </template>
 

@@ -22,6 +22,8 @@ export default defineComponent({
   >
     <p
       class="chat__message"
+      :key="message.id"
+      v-for="message in messages"
     >
       <span
         class="chat__time"

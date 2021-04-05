@@ -1,10 +1,11 @@
 <script lang="ts">
-import { PropType, Component, defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
 
 export interface ChatMessageInterface {
+  id: number,
   body: string,
   time: number,
-  createdAt: Date,
+  createdAt: number,
 };
 
 export default defineComponent({
