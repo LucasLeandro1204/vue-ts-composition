@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { computed, ComputedRef, defineComponent, PropType } from 'vue';
 import ChatMessage, { ChatMessageInterface } from './ChatMessage.vue';
 
 export type ChatMessageArray = Array<ChatMessageInterface>;
@@ -16,9 +16,16 @@ export default defineComponent({
       default: () => ([]),
     },
   },
+
+  setup (props) {
+    const filtered: ComputedRef<ChatMessageArray> = computed((): ChatMessageArray => props.messages.sort((a, b) => a.time - b.time));
+
+    return {
+      filtered,
+    };
+  },
 });
 </script>
-
 
 <template>
   <aside
@@ -27,7 +34,7 @@ export default defineComponent({
     <ChatMessage
       :key="message.id"
       :message="message"
-      v-for="message in messages"
+      v-for="message in filtered"
     />
   </aside>
 </template>
