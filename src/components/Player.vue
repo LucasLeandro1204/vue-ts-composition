@@ -7,6 +7,7 @@ import { ButtonInterface } from './Button.vue';
 import { computed, defineComponent, watch, ref, Ref, VNode, toRef } from 'vue';
 import videojs, { VideoJsPlayer } from 'video.js';
 import { useVideojs } from '../use/videojs';
+import { useVModel } from '@vueuse/core';
 
 export default defineComponent({
   props: {
@@ -31,7 +32,11 @@ export default defineComponent({
 
   setup (props, { emit }) {
     const video = ref<VNode | null>(null);
-    const player = useVideojs(video, PLAYER_OPTIONS);
+    const status = useVModel(props, 'status', emit);
+
+    const player = useVideojs(video, PLAYER_OPTIONS, (): void => {
+      status.value = false;
+    });
 
     const action = computed((): ButtonInterface => {
       if (props.status) {
@@ -48,13 +53,9 @@ export default defineComponent({
     });
 
     watch(
-      [player, toRef(props, 'status')],
+      () => props.status,
 
-      ([player, status]): void => {
-        if (player === null) {
-          return;
-        }
-
+      (status): void => {
         if (status) {
           player.play();
 
@@ -69,7 +70,9 @@ export default defineComponent({
       },
     );
 
-    const handleActionClick = (): void => emit('update:status', ! props.status);
+    const handleActionClick = (): void => {
+      status.value = ! status.value;
+    };
 
     return {
       video,
