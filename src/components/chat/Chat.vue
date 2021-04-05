@@ -1,14 +1,15 @@
 <script lang="ts">
-import { PropType, Component, defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
+import { ChatMessageInterface } from './ChatMessage.vue';
 
-export interface ButtonInterface {
-  text: string,
-  icon: Component,
-};
+export type ChatMessageArray = Array<ChatMessageInterface>;
 
 export default defineComponent({
   props: {
     messages: {
+      type: Array as PropType<ChatMessageArray>,
+      required: false,
+      default: () => ([]),
     },
   },
 });
