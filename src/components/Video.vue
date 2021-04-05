@@ -7,6 +7,11 @@ export const PLAYER_OPTIONS = <VideoJsPlayerOptions>{
   preload: 'auto',
   bigPlayButton: false,
 
+  userActions: {
+    hotkeys: false,
+    doubleClick: false,
+  },
+
   controlBar: {
     playToggle: false,
     fullscreenToggle: false,
