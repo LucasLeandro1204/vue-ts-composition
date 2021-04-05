@@ -73,5 +73,9 @@ export default defineComponent({
   width: auto;
   height: auto;
   background: var(--color-gray-darkest);
+
+  .vjs-tech {
+    pointer-events: none;
+  }
 }
 </style>
