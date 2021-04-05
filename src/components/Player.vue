@@ -4,8 +4,9 @@ import PauseIcon from './icon/Pause.vue';
 import Video, { PLAYER_OPTIONS } from './Video.vue';
 import ButtonIcon from './Button.vue';
 import { ButtonInterface } from './Button.vue';
-import { computed, defineComponent, watch, ref, VNodeRef } from 'vue';
+import { computed, defineComponent, watch, ref, Ref, VNode, toRef } from 'vue';
 import videojs, { VideoJsPlayer } from 'video.js';
+import { useVideojs } from '../use/videojs';
 
 export default defineComponent({
   props: {
@@ -20,7 +21,7 @@ export default defineComponent({
   },
 
   emits: {
-    status: (payload: boolean): boolean => typeof payload === 'boolean',
+    'update:status': (payload: boolean): boolean => typeof payload === 'boolean',
   },
 
   components: {
@@ -29,7 +30,9 @@ export default defineComponent({
   },
 
   setup (props, { emit }) {
-    const video = ref<VNodeRef | null>(null);
+    const video = ref<VNode | null>(null);
+    const player = useVideojs(video, PLAYER_OPTIONS);
+
     const action = computed((): ButtonInterface => {
       if (props.status) {
         return {
@@ -44,26 +47,29 @@ export default defineComponent({
       };
     });
 
-    const handleActionClick = (): void => emit('status', ! props.status);
-
     watch(
-      video,
-      ({ target }, _, onCleanup): void => {
-        const player: VideoJsPlayer = videojs(target, PLAYER_OPTIONS);
+      [player, toRef(props, 'status')],
 
-        player.on('timeupdate', (): void => {
-          console.log(player.currentTime());
-        });
+      ([player, status]): void => {
+        if (player === null) {
+          return;
+        }
 
-        onCleanup((): void => {
-          player.pause();
-          player.dispose();
-        });
+        if (status) {
+          player.play();
+
+          return;
+        }
+
+        player.pause();
       },
+
       {
-        flush: 'post',
+        immediate: true,
       },
     );
+
+    const handleActionClick = (): void => emit('update:status', ! props.status);
 
     return {
       video,

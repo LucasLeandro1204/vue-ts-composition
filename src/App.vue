@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import { ref } from '@vue/reactivity';
 import Chat from './components/Chat.vue';
 import Player from './components/Player.vue';
+
+const playing = ref<boolean>(false);
 </script>
 
 <template>
   <Player
     class="app__player"
+    v-model:status="playing"
   />
 
   <Chat
