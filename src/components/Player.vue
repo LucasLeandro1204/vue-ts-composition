@@ -33,7 +33,7 @@ export default defineComponent({
     const video = ref<VNode | null>(null);
     const status = useVModel(props, 'status', emit);
 
-    const player = useVideojs(video, PLAYER_OPTIONS, (): void => {
+    const { formatedTime, play, pause } = useVideojs(video, PLAYER_OPTIONS, (): void => {
       status.value = false;
     });
 
@@ -56,12 +56,12 @@ export default defineComponent({
 
       (status): void => {
         if (status) {
-          player.play();
+          play();
 
           return;
         }
 
-        player.pause();
+        pause();
       },
 
       {
@@ -76,6 +76,7 @@ export default defineComponent({
     return {
       video,
       action,
+      formatedTime,
       handleActionClick,
     };
   },
@@ -92,10 +93,17 @@ export default defineComponent({
       ref="video"
     />
 
-    <ButtonIcon
-      :action="action"
-      @click="handleActionClick"
-    />
+    <div
+      class="player__inline-controls"
+    >
+      <ButtonIcon
+        :action="action"
+        @click="handleActionClick"
+        class="player__action"
+      />
+
+      {{ formatedTime }}
+    </div>
   </main>
 </template>
 
@@ -107,6 +115,12 @@ export default defineComponent({
 
   &__video {
     margin-bottom: 16px;
+  }
+
+  &__inline-controls {
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
   }
 
   &__action {
