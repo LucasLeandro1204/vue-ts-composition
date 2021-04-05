@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, Component, PropType } from 'vue';
 
-export interface ButtonIcon {
+export interface ButtonInterface {
   text: string,
   icon: Component,
 };

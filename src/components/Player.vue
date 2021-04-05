@@ -2,7 +2,7 @@
 import PlayIcon from './icon/Play.vue';
 import PauseIcon from './icon/Pause.vue';
 import Video from './Video.vue';
-import ButtonIcon, { ButtonIconInterface } from './ButtonIcon.vue';
+import ButtonIcon, { ButtonInterface } from './Button.vue';
 import { computed, defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -19,7 +19,7 @@ export default defineComponent({
 
   setup (): object {
     const playing = ref<boolean>(false);
-    const action = computed((): ButtonIconInterface => {
+    const action = computed((): ButtonInterface => {
       if (playing.value) {
         return {
           text: 'PAUSE',
