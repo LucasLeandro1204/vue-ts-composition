@@ -15,10 +15,18 @@ export default defineComponent({
       required: false,
       default: () => ([]),
     },
+
+    currentTime: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
   },
 
   setup (props) {
-    const filtered: ComputedRef<ChatMessageArray> = computed((): ChatMessageArray => props.messages.sort((a, b) => a.time - b.time));
+    const filtered: ComputedRef<ChatMessageArray> = computed(
+      (): ChatMessageArray => props.messages.filter(message => props.currentTime > message.time)
+    );
 
     return {
       filtered,

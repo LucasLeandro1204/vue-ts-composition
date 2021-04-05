@@ -6,22 +6,17 @@ import ButtonIcon from './Button.vue';
 import { ButtonInterface } from './Button.vue';
 import { computed, defineComponent, watch, ref, VNode } from 'vue';
 import { useVideojs } from '../use/videojs';
-import { useVModel } from '@vueuse/core';
+import { debouncedWatch, useVModel } from '@vueuse/core';
 
 export default defineComponent({
   props: {
-    /**
-     * Player status.
-     * true = playing
-     * false = paused
-     */
-    status: {
-      type: Boolean,
+    time: {
+      type: Number,
     },
   },
 
   emits: {
-    'update:status': (payload: boolean): boolean => typeof payload === 'boolean',
+    'update:time': (payload: number): boolean => typeof payload === 'number' && payload >= 0,
   },
 
   components: {
@@ -31,14 +26,14 @@ export default defineComponent({
 
   setup (props, { emit }) {
     const video = ref<VNode | null>(null);
-    const status = useVModel(props, 'status', emit);
+    const status = ref<boolean>(false);
 
     const { time, play, pause } = useVideojs(video, PLAYER_OPTIONS, (): void => {
       status.value = false;
     });
 
     const action = computed((): ButtonInterface => {
-      if (props.status) {
+      if (status.value) {
         return {
           text: 'PAUSE',
           icon: PauseIcon,
@@ -51,8 +46,12 @@ export default defineComponent({
       };
     });
 
+    const handleActionClick = (): void => {
+      status.value = ! status.value;
+    };
+
     watch(
-      () => props.status,
+      status,
 
       (status): void => {
         if (status) {
@@ -69,9 +68,13 @@ export default defineComponent({
       },
     );
 
-    const handleActionClick = (): void => {
-      status.value = ! status.value;
-    };
+    debouncedWatch(
+      () => time.current,
+      (current: number): void => emit('update:time', current),
+      {
+        debounce: 100,
+      },
+    );
 
     return {
       time,

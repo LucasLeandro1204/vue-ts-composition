@@ -12,12 +12,14 @@ export default defineComponent({
   },
 
   setup () {
+    const currentTime = ref<number>(0);
     const playing = ref<boolean>(false);
     const messages: ComputedRef<ChatMessageArray> = computed((): ChatMessageArray => fakeMessages);
 
     return {
       playing,
       messages,
+      currentTime,
     };
   },
 });
@@ -26,12 +28,13 @@ export default defineComponent({
 <template>
   <Player
     class="app__player"
-    v-model:status="playing"
+    v-model:time="currentTime"
   />
 
   <Chat
     class="app__chat"
     :messages="messages"
+    :currentTime="currentTime"
   />
 </template>
 
