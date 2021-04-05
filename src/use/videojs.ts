@@ -1,9 +1,10 @@
-import { ref, watch, Ref, VNode, computed } from 'vue';
+import { ref, watch, Ref, VNode } from 'vue';
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
+import { useTime } from './time';
 
 export const useVideojs = (target: Ref<VNode | null>, options: VideoJsPlayerOptions, onEnded?: Function) => {
-  const currentTime = ref<number>(0);
-  const formatedTime = computed((): string => new Date(currentTime.value * 1000).toISOString().substr(11, 8));
+  const time = useTime();
+
   const instance = ref<VideoJsPlayer | null>(null);
 
   const play = (): void => {
@@ -32,7 +33,7 @@ export const useVideojs = (target: Ref<VNode | null>, options: VideoJsPlayerOpti
       instance.value = player;
 
       player.on('timeupdate', (): void => {
-        currentTime.value = player.currentTime();
+        time.current = player.currentTime();
       });
 
       player.on('ended', (): void => {
@@ -52,11 +53,10 @@ export const useVideojs = (target: Ref<VNode | null>, options: VideoJsPlayerOpti
   );
 
   return {
+    time,
     play,
     pause,
     status,
     instance,
-    currentTime,
-    formatedTime,
   };
 };

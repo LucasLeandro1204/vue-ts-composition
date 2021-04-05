@@ -1,23 +1,23 @@
-import { ref, Ref, ComputedRef } from "@vue/reactivity";
-import { computed } from "@vue/runtime-core";
+import { extendRef } from '@vueuse/core';
+import { ref, computed, Ref, ComputedRef, ShallowUnwrapRef } from 'vue';
 
 export interface TimeInterface {
-  time: Ref<number>,
+  current: Ref<number>,
   formated: ComputedRef<string>,
 };
 
-export type TimeRef = TimeInterface['time'];
-export type FormatedTime = TimeInterface['formated'];
+export type CurrentTimeRef = TimeInterface['current'];
+export type FormatedTimeRef = TimeInterface['formated'];
 
-export const useFormatedTime = (time: TimeRef): FormatedTime =>
+export const useFormatedTime = (time: CurrentTimeRef): FormatedTimeRef =>
   computed((): string => new Date(time.value * 1000).toISOString().substr(11, 8));
 
-export const useTime = (): TimeInterface => {
-  const time = ref<number>(0);
-  const formated: FormatedTime = useFormatedTime(time);
+export const useTime = (): ShallowUnwrapRef<TimeInterface> => {
+  const current: CurrentTimeRef = ref<number>(0);
+  const formated: FormatedTimeRef = useFormatedTime(current);
 
-  return {
-    time,
+  return extendRef(formated, {
+    current,
     formated,
-  };
+  });
 };

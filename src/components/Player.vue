@@ -33,7 +33,7 @@ export default defineComponent({
     const video = ref<VNode | null>(null);
     const status = useVModel(props, 'status', emit);
 
-    const { formatedTime, play, pause } = useVideojs(video, PLAYER_OPTIONS, (): void => {
+    const { time, play, pause } = useVideojs(video, PLAYER_OPTIONS, (): void => {
       status.value = false;
     });
 
@@ -74,9 +74,9 @@ export default defineComponent({
     };
 
     return {
+      time,
       video,
       action,
-      formatedTime,
       handleActionClick,
     };
   },
@@ -104,7 +104,7 @@ export default defineComponent({
 
       <span
         class="player__time"
-        v-text="formatedTime"
+        v-text="time"
       />
     </div>
   </main>
