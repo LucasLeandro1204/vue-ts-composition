@@ -1,5 +1,7 @@
 # Vue TypeScript
 
+Vue 3 + TypeScript + Composition API combined into a simple and small application
+
 ## Development
 
 > You must have installed Node and Yarn.
