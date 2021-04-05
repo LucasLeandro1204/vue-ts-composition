@@ -1,3 +1,20 @@
+<script lang="ts">
+import { PropType, Component, defineComponent } from 'vue';
+
+export interface ButtonInterface {
+  text: string,
+  icon: Component,
+};
+
+export default defineComponent({
+  props: {
+    messages: {
+    },
+  },
+});
+</script>
+
+
 <template>
   <aside
     class="chat"
@@ -6,9 +23,15 @@
       class="chat__message"
     >
       <span
-        class="chat__timestamp"
+        class="chat__time"
       >
-        1:30m
+        00:00:04 -
+
+        <span
+          class="chat__time-ago"
+        >
+          3 min ago
+        </span>
       </span>
 
       some random message here
@@ -31,9 +54,14 @@
     flex-direction: column;
   }
 
-  &__timestamp {
+  &__time {
     opacity: .7;
     font-size: 14px;
+
+    &-ago {
+      font-weight: 300;
+      font-size: 12px;
+    }
   }
 }
 </style>
