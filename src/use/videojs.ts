@@ -1,4 +1,4 @@
-import { ref, watch, Ref, VNode, reactive, nextTick } from 'vue';
+import { ref, watch, Ref, VNode } from 'vue';
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
 
 export const useVideojs = (target: Ref<VNode | null>, options: VideoJsPlayerOptions, onEnded?: Function) => {

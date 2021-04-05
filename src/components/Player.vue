@@ -4,8 +4,7 @@ import PauseIcon from './icon/Pause.vue';
 import Video, { PLAYER_OPTIONS } from './Video.vue';
 import ButtonIcon from './Button.vue';
 import { ButtonInterface } from './Button.vue';
-import { computed, defineComponent, watch, ref, Ref, VNode, toRef } from 'vue';
-import videojs, { VideoJsPlayer } from 'video.js';
+import { computed, defineComponent, watch, ref, VNode } from 'vue';
 import { useVideojs } from '../use/videojs';
 import { useVModel } from '@vueuse/core';
 
