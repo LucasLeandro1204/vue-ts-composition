@@ -1,13 +1,7 @@
 <script lang="ts">
+import { ChatMessageInterface } from './types';
 import { PropType, defineComponent, toRef } from 'vue';
 import { FormatedTimeRef, useFormatedTime } from '../../use/time';
-
-export interface ChatMessageInterface {
-  id: number,
-  body: string,
-  time: number,
-  author: string,
-};
 
 export default defineComponent({
   props: {
