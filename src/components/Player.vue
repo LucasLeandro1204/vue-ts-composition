@@ -2,21 +2,24 @@
 import PlayIcon from './icon/Play.vue';
 import PauseIcon from './icon/Pause.vue';
 import Video from './Video.vue';
-import { computed, defineComponent, ref, Component } from 'vue';
-
-export interface PlayerAction {
-  text: string,
-  icon: Component,
-};
+import ButtonIcon, { ButtonIconInterface } from './ButtonIcon.vue';
+import { computed, defineComponent, ref } from 'vue';
 
 export default defineComponent({
+  props: {
+    status: {
+      type: Boolean,
+    },
+  },
+
   components: {
     Video,
+    ButtonIcon,
   },
 
   setup (): object {
     const playing = ref<boolean>(false);
-    const action = computed((): PlayerAction => {
+    const action = computed((): ButtonIconInterface => {
       if (playing.value) {
         return {
           text: 'PAUSE',
@@ -52,17 +55,10 @@ export default defineComponent({
       src="/big_buck_bunny.mp4"
     />
 
-    <button
-      class="player__action"
-      @click.prevent="handleActionClick"
-    >
-      <Component
-        :is="action.icon"
-        class="player__action-icon"
-      />
-
-      {{ action.text }}
-    </button>
+    <ButtonIcon
+      :action="action"
+      @click="handleActionClick"
+    />
   </main>
 </template>
 
